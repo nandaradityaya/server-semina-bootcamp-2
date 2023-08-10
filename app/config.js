@@ -8,10 +8,10 @@ module.exports = {
 
   urlDb: process.env.URL_MONGODB_DEV,
   jwtExpiration: process.env.JWT_EXPIRATION,
-  // jwtSecret: process.env.JWT_SECRET,
+  // jwtSecret: process.env.JWT_SECRET_KEY,
   jwtSecret: "jwtSecret",
-  jwtRefreshTokenExpiration: process.env.JWT_REFRESH_TOKEN_EXPIRATION,
-  jwtRefreshTokenSecret: process.env.JWT_REFRESH_TOKEN_SECRET,
+  jwtRefreshTokenSecret: process.env.JWT_SECRET_KEY_REFRESH_TOKEN,
+  jwtRefreshTokenExpiration: process.env.JWT_EXPIRATION_KEY_REFRESH_TOKEN,
   gmail: process.env.GMAIL,
   password: process.env.PASSWORD,
 };

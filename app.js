@@ -3,6 +3,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const app = express();
+const cors = require("cors");
 
 // router
 const categoriesRouter = require("./app/api/v1/categories/router"); // router
@@ -14,12 +15,14 @@ const authCMSRouter = require("./app/api/v1/auth/router"); // router
 const ordersRouter = require("./app/api/v1/orders/router"); // router
 const participantsRouter = require("./app/api/v1/participants/router"); // router
 const paymentsRouter = require("./app/api/v1/payments/router"); // router
+const userRefreshTokenRouter = require("./app/api/v1/userRefreshToken/router"); // router
 
 const v1 = "/api/v1";
 
 const notFoundMiddleware = require("./app/middlewares/not-found"); // middleware error handling
 const handleErrorMiddleware = require("./app/middlewares/handler-error"); // middleware error handling
 
+app.use(cors()); // cors untuk mengijinkan akses dari luar ke server API kita
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -41,6 +44,7 @@ app.use(`${v1}/cms`, organizersRouter);
 app.use(`${v1}/cms`, authCMSRouter);
 app.use(`${v1}/cms`, ordersRouter);
 app.use(`${v1}/cms`, paymentsRouter);
+app.use(`${v1}/cms`, userRefreshTokenRouter);
 app.use(`${v1}`, participantsRouter);
 
 // middlewares | pastiin juga middleware berada di bawah router kita biar dia ga di eksekusi pertama kali, jd klo routernya error baru kita jalanin custom errornya
