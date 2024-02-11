@@ -20,6 +20,8 @@ const getUserRefreshToken = async (req) => {
     refreshToken,
   });
 
+  if (!result) throw new NotFoundError(`refreshToken tidak valid `);
+
   const payload = isTokenValidRefreshToken({ token: result.refreshToken });
 
   if (email !== payload.email) {
